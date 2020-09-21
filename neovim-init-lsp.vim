@@ -80,9 +80,9 @@ inoremap <silent><expr> <TAB>
 
 " Visualize diagnostics
 let g:diagnostic_enable_virtual_text = 1
+let g:diagnostic_trimmed_virtual_text = '40'
 " Don't show diagnostics while in insert mode
 let g:diagnostic_insert_delay = 1
-let g:diagnostic_trimmed_virtual_text = '40'
 
 " Set updatetime for CursorHold
 " 300ms of no cursor movement to trigger CursorHold
