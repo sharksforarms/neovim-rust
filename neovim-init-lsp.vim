@@ -84,6 +84,10 @@ let g:diagnostic_trimmed_virtual_text = '40'
 " Don't show diagnostics while in insert mode
 let g:diagnostic_insert_delay = 1
 
+" have a fixed column for the diagnostics to appear in
+" this removes the jitter when warnings/errors flow in
+set signcolumn=yes
+
 " Set updatetime for CursorHold
 " 300ms of no cursor movement to trigger CursorHold
 set updatetime=300
