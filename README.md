@@ -22,7 +22,7 @@ each file.
 
 Each example can be tested with the provided Dockerfile!
 
-1. Build the container: `docker build -t testvim`
+1. Build the container: `docker build -t testvim .`
 2. Mount the config and run
     - vim: `docker run -v "$PWD/<example.vim>:/root/.vimrc" -it testvim /bin/bash`
     - nvim: `docker run -v "$PWD/<example.vim>:/root/.config/nvim/init.vim" -it testvim /bin/bash`
