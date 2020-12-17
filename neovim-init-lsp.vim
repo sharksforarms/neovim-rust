@@ -17,11 +17,15 @@ Plug 'tjdevries/lsp_extensions.nvim'
 " Autocompletion framework for built-in LSP
 Plug 'nvim-lua/completion-nvim'
 
+" Some color scheme other then default
+Plug 'arcticicestudio/nord-vim'
 
 call plug#end()
 
 syntax enable
 filetype plugin indent on
+
+colorscheme nord
 
 
 " Set completeopt to have a better completion experience
