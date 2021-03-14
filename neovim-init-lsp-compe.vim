@@ -17,6 +17,9 @@ Plug 'nvim-lua/lsp_extensions.nvim'
 " Autocompletion framework for built-in LSP
 Plug 'hrsh7th/nvim-compe'
 
+" Snippet engine to handle LSP snippets
+Plug 'hrsh7th/vim-vsnip'
+
 " Some color scheme other then default
 Plug 'arcticicestudio/nord-vim'
 
@@ -45,8 +48,14 @@ local nvim_lsp = require'lspconfig'
 local on_attach = function(client)
 end
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 -- Enable rust_analyzer
-nvim_lsp.rust_analyzer.setup({ on_attach=on_attach })
+nvim_lsp.rust_analyzer.setup({
+    capabilities=capabilities,
+    on_attach=on_attach,
+})
 
 -- Enable diagnostics
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
