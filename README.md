@@ -22,11 +22,9 @@ each file.
 
 Each example can be tested with the provided Dockerfile!
 
-1. Build the container: `docker build -t testvim .`
-2. Mount the config and run
-    - vim: `docker run -v "$PWD/<example.vim>:/root/.vimrc" -it testvim /bin/bash`
-    - nvim: `docker run -v "$PWD/<example.vim>:/root/.config/nvim/init.vim" -it testvim /bin/bash`
-3. Open `vim` or `nvim` and run `:PlugInstall`
-4. Open a Rust file, `cd ~/test_app`, `[n]vim src/main.rs`
-5. Modify configuration, test, repeat!
+See the `run.sh` script for details. This will start a docker instance and run `PlugInstall`.
+
+For example, `./run.sh ./neovim-init-lsp-compe.vim` to test this configuration.
+
+There is a rust project setup in `~/test_app`
 
