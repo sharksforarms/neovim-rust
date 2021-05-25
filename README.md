@@ -6,6 +6,8 @@ Rust development experience.
 All vim configurations should work under neovim. Neovim configurations will
 not work under vim.
 
+Blog post: https://sharksforarms.dev/posts/neovim-rust/
+
 # Examples
 
 Each example provides `Prerequisites` and `Steps` as comments at the top of
