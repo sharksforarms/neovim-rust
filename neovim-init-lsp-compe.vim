@@ -82,6 +82,9 @@ nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 "nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 
+" Quick-fix
+nnoremap <silent> ga    <cmd>lua vim.lsp.buf.code_action()<CR>
+
 " Completion
 lua <<EOF
 require'compe'.setup {
