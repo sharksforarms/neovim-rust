@@ -27,13 +27,15 @@ In order of recommendation,
 
 # Try for yourself!
 
-Each example can be tested with the provided Dockerfile!
+Each example can be tested with the provided Dockerfile! This allows you to
+test a configuration without changing your system. The Dockerfile
+provides all the dependencies required to run each setup.
 
 See the `run.sh` script for details. This will start a docker instance and run `PlugInstall`.
 
 For example, `./run.sh ./neovim-init-lsp-compe-rust-tools.vim` to test this configuration.
 
-Once in the container, navigate to `~/test_app` to try it on some rust code.
+Once in the container, navigate to `~/test_app` to try the configuration on some rust code.
 
 [neovim-init-lsp-compe-rust-tools]: ./neovim-init-lsp-compe-rust-tools.vim
 [neovim-init-lsp-compe]: ./neovim-init-lsp-compe.vim

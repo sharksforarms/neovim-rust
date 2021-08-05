@@ -10,8 +10,10 @@ RUN apt-get update \
     # Install common deps
     && apt-get install -y curl git exuberant-ctags software-properties-common gnupg \
     # Install rust-analyzer
-    && curl -L -o ~/.local/bin/rust-analyzer --create-dirs\
-       https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-linux\
+    && curl -L -o rust-analyzer-x86_64-unknown-linux-gnu.gz https://github.com/rust-analyzer/rust-analyzer/releases/download/nightly/rust-analyzer-x86_64-unknown-linux-gnu.gz \
+    && gzip -d rust-analyzer-x86_64-unknown-linux-gnu.gz \
+    && mkdir -p ~/.local/bin \
+    && mv rust-analyzer-x86_64-unknown-linux-gnu ~/.local/bin/rust-analyzer \
     && chmod +x ~/.local/bin/rust-analyzer \
     # Node required for vim-vimrc-coc example
     && curl -sL https://deb.nodesource.com/setup_14.x  | bash - \
