@@ -11,13 +11,21 @@ call plug#begin('~/.vim/plugged')
 " Collection of common configurations for the Nvim LSP client
 Plug 'neovim/nvim-lspconfig'
 
-" Autocompletion framework for built-in LSP
-Plug 'hrsh7th/nvim-compe'
+" Autocompletion framework
+Plug 'hrsh7th/nvim-cmp'
+" cmp LSP completion
+Plug 'hrsh7th/cmp-nvim-lsp'
+" cmp Snippet completion
+Plug 'hrsh7th/cmp-vsnip'
+" cmp Path completion
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-buffer'
+" See hrsh7th other plugins for more great completion sources!
 
 " Adds extra functionality over rust analyzer
 Plug 'simrat39/rust-tools.nvim'
 
-" Snippet engine to handle LSP snippets
+" Snippet engine
 Plug 'hrsh7th/vim-vsnip'
 
 " Optional
@@ -37,11 +45,10 @@ colorscheme nord
 
 
 " Set completeopt to have a better completion experience
-set completeopt=menu,menuone,noselect
+set completeopt=menuone,noselect
 
 " Avoid showing extra messages when using completion
 set shortmess+=c
-
 
 " Configure lsp
 " https://github.com/neovim/nvim-lspconfig#rust_analyzer
@@ -83,49 +90,42 @@ nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
 nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-" rust-analyzer does not yet support goto declaration
-" re-mapped `gd` to definition
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
-"nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
-
-" Quick-fix
-nnoremap <silent> ga    <cmd>lua vim.lsp.buf.code_action()<CR>
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 
 " Completion
 lua <<EOF
-require'compe'.setup {
-  enabled = true;
-  autocomplete = true;
-  debug = false;
-  min_length = 1;
-  preselect = 'enable';
-  throttle_time = 80;
-  source_timeout = 200;
-  incomplete_delay = 400;
-  max_abbr_width = 100;
-  max_kind_width = 100;
-  max_menu_width = 100;
+local cmp = require'cmp'
+cmp.setup({
+  snippet = {
+    expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body)
+    end,
+  },
+  mapping = {
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
+    ['<C-n>'] = cmp.mapping.select_next_item(),
+    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+    ['<Tab>'] = cmp.mapping.select_next_item(),
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<CR>'] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Insert,
+      select = true,
+    })
+  },
 
-  source = {
-    path = true;
-    buffer = true;
-    calc = true;
-    vsnip = true;
-    nvim_lsp = true;
-    nvim_lua = true;
-    spell = true;
-    tags = true;
-    snippets_nvim = true;
-  };
-}
+  -- Installed sources
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'vsnip' },
+    { name = 'path' },
+    { name = 'buffer' },
+  },
+})
 EOF
-inoremap <silent><expr> <C-Space> compe#complete()
-inoremap <silent><expr> <CR>      compe#confirm('<CR>')
-inoremap <silent><expr> <C-e>     compe#close('<C-e>')
-
-" Use <Tab> and <S-Tab> to navigate through popup menu
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " have a fixed column for the diagnostics to appear in
 " this removes the jitter when warnings/errors flow in
