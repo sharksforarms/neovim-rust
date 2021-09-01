@@ -22,9 +22,6 @@ Plug 'arcticicestudio/nord-vim'
 
 call plug#end()
 
-syntax enable
-filetype plugin indent on
-
 colorscheme nord
 
 
