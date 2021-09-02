@@ -1,3 +1,5 @@
+" This is an example on how rust-analyzer can be configure using rust-tools
+
 " Prerequisites:
 " - neovim >= 0.5
 " - rust-analyzer: https://rust-analyzer.github.io/manual.html#rust-analyzer-language-server-binary
@@ -42,13 +44,18 @@ colorscheme nord
 
 
 " Set completeopt to have a better completion experience
-set completeopt=menuone,noselect
+" :help completeopt
+" menuone: popup even when there's only one match
+" noinsert: Do not insert text until a selection is made
+" noselect: Do not select, force user to select one from the menu
+set completeopt=menuone,noinsert,noselect
 
 " Avoid showing extra messages when using completion
 set shortmess+=c
 
-" Configure lsp
-" https://github.com/neovim/nvim-lspconfig#rust_analyzer
+" Configure LSP through rust-tools.nvim plugin.
+" rust-tools will configure and enable certain LSP features for us.
+" See https://github.com/simrat39/rust-tools.nvim#configuration
 lua <<EOF
 
 -- nvim_lsp object
@@ -88,9 +95,12 @@ nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 
-" Completion
+" Quick-fix
+nnoremap <silent> ga    <cmd>lua vim.lsp.buf.code_action()<CR>
+
+" Setup Completion
+" See https://github.com/hrsh7th/nvim-cmp#basic-configuration
 lua <<EOF
 local cmp = require'cmp'
 cmp.setup({
@@ -102,6 +112,7 @@ cmp.setup({
   mapping = {
     ['<C-p>'] = cmp.mapping.select_prev_item(),
     ['<C-n>'] = cmp.mapping.select_next_item(),
+    -- Add tab support
     ['<S-Tab>'] = cmp.mapping.select_prev_item(),
     ['<Tab>'] = cmp.mapping.select_next_item(),
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),

@@ -20,7 +20,7 @@ each file.
 | Example         | Description                                                   | Stability          | Syntax             | Navigation         | Autocompletion     | Inlay Hints        | Diagnostics        |
 |-----------------|---------------------------------------------------------------|--------------------|--------------------|--------------------|--------------------|--------------------|--------------------|
 | [neovim-init-lsp-cmp-rust-tools] | Neovim configuration using built-in LSP [nvim-cmp] and [rust-tools.nvim] | :construction:     | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| [neovim-init-lsp] | Neovim configuration using built-in LSP and [completion.nvim] | :construction:     | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| [neovim-init-lsp] | Neovim configuration using built-in LSP and [nvim-cmp] | :construction:     | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | [vim-vimrc-coc]   | Autocompletion with [Conquer of Completion]                     | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                | :heavy_check_mark: |
 | [vim-vimrc]       | Simple vim configuration                                      | :heavy_check_mark: | :heavy_check_mark: | :x:                | :x:                | :x:                | :heavy_check_mark: |
 
@@ -42,5 +42,4 @@ Once in the container, navigate to `~/test_app` to try the configuration on some
 [vim-vimrc]: ./vim-vimrc.vim
 [rust-tools.nvim]: https://github.com/simrat39/rust-tools.nvim
 [nvim-cmp]: https://github.com/hrsh7th/nvim-cmp
-[completion.nvim]: https://github.com/nvim-lua/completion-nvim
 [Conquer of Completion]: https://github.com/neoclide/coc.nvim
