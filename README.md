@@ -1,4 +1,4 @@
-# vim-rust
+# neovim-rust
 
 Colection of Vim and Neovim configurations to kickstart your
 Rust development experience.
