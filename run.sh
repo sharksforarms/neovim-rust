@@ -21,4 +21,4 @@ CONFIG_FILE=`readlink -f $CONFIG_FILE`
 echo "Editor: $EDITOR_BIN"
 echo "Mount: $CONFIG_FILE -> $MOUNT_PATH"
 
-sudo docker run -v $CONFIG_FILE:$MOUNT_PATH -it vim-rust /bin/bash -c "$EDITOR_BIN -u NONE ~/.config/nvim/init.vim +so +PlugInstall +qa && /bin/bash"
+sudo docker run -v $CONFIG_FILE:$MOUNT_PATH -it vim-rust /bin/bash -c "cd ~/test_app && $EDITOR_BIN -E -s -u NONE ~/.config/nvim/init.vim +so +PlugInstall +qa || /bin/bash"
