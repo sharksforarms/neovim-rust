@@ -34,6 +34,6 @@ RUN apt-get update \
 RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
 ENV PATH="/root/.local/bin:/root/.cargo/bin:${PATH}"
 
-RUN cd ~/ && cargo new test_app
+RUN echo "nvim ./src/main.rs" > ~/.bash_history && cd ~/ && cargo new test_app
 
 CMD ["/bin/bash"]
