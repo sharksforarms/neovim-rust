@@ -8,7 +8,7 @@ ENV USER=root
 # Install vim and neovim
 RUN apt-get update \
     # Install common deps
-    && apt-get install -y curl git exuberant-ctags software-properties-common gnupg \
+    && apt-get install -y build-essential curl git exuberant-ctags software-properties-common gnupg \
     # Install rust-analyzer
     && curl -L -o rust-analyzer-x86_64-unknown-linux-gnu.gz https://github.com/rust-analyzer/rust-analyzer/releases/download/nightly/rust-analyzer-x86_64-unknown-linux-gnu.gz \
     && gzip -d rust-analyzer-x86_64-unknown-linux-gnu.gz \
