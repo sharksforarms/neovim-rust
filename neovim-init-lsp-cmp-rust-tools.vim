@@ -1,7 +1,7 @@
-" This is an example on how rust-analyzer can be configure using rust-tools
+" This is an example on how rust-analyzer can be configured using rust-tools
 
 " Prerequisites:
-" - neovim >= 0.5
+" - neovim >= 0.8
 " - rust-analyzer: https://rust-analyzer.github.io/manual.html#rust-analyzer-language-server-binary
 
 " Steps:
