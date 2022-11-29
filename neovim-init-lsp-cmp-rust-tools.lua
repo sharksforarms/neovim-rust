@@ -73,7 +73,7 @@ vim.cmd([[ colorscheme nord ]])
 -- :help completeopt
 -- menuone: popup even when there's only one match
 -- noinsert: Do not insert text until a selection is made
--- noselect: Do not select, force user to select one from the menu
+-- noselect: Do not auto-select, nvim-cmp plugin will handle this for us.
 vim.o.completeopt = "menuone,noinsert,noselect"
 
 -- Avoid showing extra messages when using completion
@@ -81,7 +81,7 @@ vim.opt.shortmess = vim.opt.shortmess + "c"
 
 local function on_attach(client, buffer)
     local keymap_opts = { buffer = buffer }
-    -- " Code navigation and shortcuts
+    -- Code navigation and shortcuts
     vim.keymap.set("n", "<c-]>", vim.lsp.buf.definition, keymap_opts)
     vim.keymap.set("n", "K", vim.lsp.buf.hover, keymap_opts)
     vim.keymap.set("n", "gD", vim.lsp.buf.implementation, keymap_opts)
@@ -93,7 +93,7 @@ local function on_attach(client, buffer)
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, keymap_opts)
     vim.keymap.set("n", "ga", vim.lsp.buf.code_action, keymap_opts)
 
-    -- " Show diagnostic popup on cursor hover
+    -- Show diagnostic popup on cursor hover
     local diag_float_grp = vim.api.nvim_create_augroup("DiagnosticFloat", { clear = true })
     vim.api.nvim_create_autocmd("CursorHold", {
       callback = function()
@@ -102,7 +102,7 @@ local function on_attach(client, buffer)
       group = diag_float_grp,
     })
 
-    -- " Goto previous/next diagnostic warning/error
+    -- Goto previous/next diagnostic warning/error
     vim.keymap.set("n", "g[", vim.diagnostic.goto_prev, keymap_opts)
     vim.keymap.set("n", "g]", vim.diagnostic.goto_next, keymap_opts)
 end
@@ -144,8 +144,8 @@ local opts = {
 
 require("rust-tools").setup(opts)
 
--- " Setup Completion
--- " See https://github.com/hrsh7th/nvim-cmp#basic-configuration
+-- Setup Completion
+-- See https://github.com/hrsh7th/nvim-cmp#basic-configuration
 local cmp = require("cmp")
 cmp.setup({
   snippet = {
